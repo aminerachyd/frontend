@@ -16,6 +16,7 @@ image:
   cartserviceaddr: "cartservice:7070"
   recommendationserviceaddr: "recommendationservice:8080"
   shippingserviceaddr: "shippingservice:50051"
+  checkoutserviceaddr: "checkoutservice:5050"
 
 nameOverride: ""
 fullnameOverride: ""

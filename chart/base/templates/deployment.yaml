@@ -80,6 +80,8 @@ spec:
               value: {{.Values.image.recommendationserviceaddr | quote}}
             - name: SHIPPING_SERVICE_ADDR
               value: {{.Values.image.shippingserviceaddr | quote}}
+            - name: CHECKOUT_SERVICE_ADDR
+              value: {{.Values.image.checkoutserviceaddr | quote}}
             - name: DISABLE_TRACING
               value: "1"
             - name: DISABLE_PROFILER
