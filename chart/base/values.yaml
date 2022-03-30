@@ -17,7 +17,7 @@ image:
   recommendationserviceaddr: "recommendationservice:8080"
   shippingserviceaddr: "shippingservice:50051"
   checkoutserviceaddr: "checkoutservice:5050"
-  adservice: "adservice:9555"
+  adserviceaddr: "adservice:9555"
 
 nameOverride: ""
 fullnameOverride: ""
