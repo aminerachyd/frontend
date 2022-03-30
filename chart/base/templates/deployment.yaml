@@ -71,7 +71,7 @@ spec:
             - name: PORT
               value: {{ .Values.image.port | quote }}
             - name: PRODUCT_CATALOG_SERVICE_ADDR
-              value: {{.Values.image.catalogserviceaddr | quote}}
+              value: {{.Values.image.productcatalogserviceaddr | quote}}
             - name: CURRENCY_SERVICE_ADDR
               value: {{.Values.image.currencyserviceaddr | quote}}
             - name: CART_SERVICE_ADDR
