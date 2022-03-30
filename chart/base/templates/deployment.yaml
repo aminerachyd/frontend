@@ -82,6 +82,8 @@ spec:
               value: {{.Values.image.shippingserviceaddr | quote}}
             - name: CHECKOUT_SERVICE_ADDR
               value: {{.Values.image.checkoutserviceaddr | quote}}
+            - name: AD_SERVICE_ADDR
+              value: {{.Values.image.adserviceaddr | quote}}
             - name: DISABLE_TRACING
               value: "1"
             - name: DISABLE_PROFILER
