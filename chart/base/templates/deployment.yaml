@@ -72,19 +72,19 @@ spec:
             - name: PORT
               value: {{ .Values.image.port | quote }}
             - name: PRODUCT_CATALOG_SERVICE_ADDR
-              value: {{.Values.image.productcatalogserviceaddr | quote}}
+              value: "{{ .Values.image.productcatalogservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.productcatalogservice.port }}"
             - name: CURRENCY_SERVICE_ADDR
-              value: {{.Values.image.currencyserviceaddr | quote}}
+              value: "{{ .Values.image.currencyservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.currencyservice.port }}"
             - name: CART_SERVICE_ADDR
-              value: {{.Values.image.cartserviceaddr | quote}}
+              value: "{{ .Values.image.cartservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.cartservice.port }}"
             - name: RECOMMENDATION_SERVICE_ADDR
-              value: {{.Values.image.recommendationserviceaddr | quote}}
+              value: "{{ .Values.image.recommendationservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.recommendationservice.port }}"
             - name: SHIPPING_SERVICE_ADDR
-              value: {{.Values.image.shippingserviceaddr | quote}}
+              value: "{{ .Values.image.shippingservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.shippingservice.port }}"
             - name: CHECKOUT_SERVICE_ADDR
-              value: {{.Values.image.checkoutserviceaddr | quote}}
+              value: "{{ .Values.image.checkoutservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.checkoutservice.port }}"
             - name: AD_SERVICE_ADDR
-              value: {{.Values.image.adserviceaddr | quote}}
+              value: "{{ .Values.image.adservice.svcName }}.{{ .Values.namespaceToDeploy }}.svc.clusterset.local:{{ .Values.image.adservice.port }}"
             - name: DISABLE_TRACING
               value: "1"
             - name: DISABLE_PROFILER
