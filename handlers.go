@@ -144,7 +144,10 @@ func (plat *platformDetails) setPlatformDetails(env string) {
 		plat.provider = "local"
 		plat.css = "local"
 	}
-	var uname = syscall.Utsname
+	var uname syscall.Utsname
+	if err := syscall.Uname(&uname); err != nil {
+		fmt.Printf("Uname: %v", err)
+ 	} 
 	plat.arch = arrayToString(uname.Machine)
 }
 
