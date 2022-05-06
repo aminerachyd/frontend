@@ -24,6 +24,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"syscall"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -37,6 +38,7 @@ import (
 type platformDetails struct {
 	css      string
 	provider string
+	arch 		 string
 }
 
 var (
@@ -114,6 +116,7 @@ func (fe *frontendServer) homeHandler(w http.ResponseWriter, r *http.Request) {
 		"ad":                fe.chooseAd(r.Context(), []string{}, log),
 		"platform_css":      plat.css,
 		"platform_name":     plat.provider,
+		"platform_arch":     plat.arch,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
 	}); err != nil {
@@ -141,6 +144,8 @@ func (plat *platformDetails) setPlatformDetails(env string) {
 		plat.provider = "local"
 		plat.css = "local"
 	}
+	var uname = syscall.Utsname
+	plat.arch = arrayToString(uname.Machine)
 }
 
 func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request) {
