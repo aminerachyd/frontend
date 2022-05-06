@@ -15,6 +15,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"html/template"
@@ -22,9 +23,9 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
-	"syscall"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -144,11 +145,16 @@ func (plat *platformDetails) setPlatformDetails(env string) {
 		plat.provider = "local"
 		plat.css = "local"
 	}
-	var uname syscall.Utsname
-	if err := syscall.Uname(&uname); err != nil {
-		fmt.Printf("Uname: %v", err)
- 	} 
-	plat.arch = arrayToString(uname.Machine)
+	// Get cpu architecture using exec
+	cmd := exec.Command("uname", "-m")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		plat.arch = "unknown"
+	} else {
+		plat.arch = out.String()
+	}
 }
 
 func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request) {
@@ -523,16 +529,4 @@ func stringinSlice(slice []string, val string) bool {
 		}
 	}
 	return false
-}
-
-func arrayToString(x [65]int8) string {
-	var buf [65]byte
-	for i, b := range x {
-		 buf[i] = byte(b)
-	}
-	str := string(buf[:])
-	if i := strings.Index(str, "\x00"); i != -1 {
-		 str = str[:i]
-	}
-	return str
 }
