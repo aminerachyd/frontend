@@ -213,6 +213,7 @@ func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request)
 		"cart_size":         cartSize(cart),
 		"platform_css":      plat.css,
 		"platform_name":     plat.provider,
+		"platform_arch":     plat.arch,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
 	}); err != nil {
@@ -325,6 +326,7 @@ func (fe *frontendServer) viewCartHandler(w http.ResponseWriter, r *http.Request
 		"expiration_years":  []int{year, year + 1, year + 2, year + 3, year + 4},
 		"platform_css":      plat.css,
 		"platform_name":     plat.provider,
+		"platform_arch":     plat.arch,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
 	}); err != nil {
@@ -398,6 +400,7 @@ func (fe *frontendServer) placeOrderHandler(w http.ResponseWriter, r *http.Reque
 		"recommendations":   recommendations,
 		"platform_css":      plat.css,
 		"platform_name":     plat.provider,
+		"platform_arch":     plat.arch,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
 	}); err != nil {
